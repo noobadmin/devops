@@ -1,0 +1,13 @@
+version: '3'
+services:
+  some-app:
+    restart: unless-stopped
+    labels:
+      - traefik.http.routers.test.rule=Path(`/some-app`)
+      - traefik.http.routers.test.tls=true
+      - traefik.http.routers.test.tls.certresolver=lets-encrypt
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
